@@ -1,0 +1,308 @@
+<PointsOfInterest lookAtTimeSec="1" lookAtMinDistMeters="2">
+    <POI type="Door" />
+    <POI type="Human" />
+</PointsOfInterest>
+<State name="default">
+
+    <ActivityBindingTable>
+        <ActivityBinding eventName="TYPE_AI_SETUP_DEFAULT_ACTIVITY" priority="0">
+            <Activity type="ACT_IDLE"/>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_IDLE_TICK" priority="1">
+            <SetPicker type="SPICK_RANDOM" min="0" max="99">
+                <Set min="0" max="99">
+                    <!--Activity type="ACT_SCAN_VISUAL" interruptible="1">
+                        <Properties waitTime="1" angleLeft="35.0" angleRight="90.0" transitionWaitTime="0.5">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_WAIT" interruptible="1" exclusive="1" runOnce="0">
+                        <Properties waitTime="1"/>
+                    </Activity-->
+                    <Activity type="ACT_SET_PRIORITY" interruptible="1">
+                        <Properties priority="3">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_STEAL_STUFF" >
+                        <Properties runSpeedModifierPercent="70" minReactDistanceMeters="3">
+                        </Properties>
+                    </Activity>
+                </Set>
+            </SetPicker>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_PATROL_ENDED" priority="2">
+            <Activity type="ACT_SET_STATE" interruptible="1" exclusive="1" runOnce="0" destinationCheckIntervalMiliSec="150.000000">
+                <Properties state="active_bank_robber"/>
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_HEAR_COMBAT" priority="3">
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="ALERTED"/>
+            </Activity>
+
+            <Activity type="ACT_INVESTIGATE_VISUAL" >
+                <Properties minDistanceMeters="30">
+                </Properties>
+            </Activity>
+
+            <Activity type="ACT_SET_STATE" interruptible="1" exclusive="1" runOnce="0">
+                <Properties state="active_bank_robber"/>
+            </Activity>
+
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_SEE_COMBAT" priority="4">
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="ALERTED"/>
+            </Activity>
+
+            <Activity type="ACT_INVESTIGATE_VISUAL" >
+                <Properties minDistanceMeters="30">
+                </Properties>
+            </Activity>
+
+            <Activity type="ACT_SET_STATE" interruptible="1" exclusive="1" runOnce="0">
+                <Properties state="active_bank_robber"/>
+            </Activity>
+
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_SAW_DOOR_OPEN" priority="5">
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="SUSPICIOUS">
+                </Properties>
+            </Activity>
+
+            <Activity type="ACT_WAIT" interruptible="1">
+                <Properties waitTime="0.4">
+                </Properties>
+            </Activity>
+
+            <Activity type="ACT_INVESTIGATE_VISUAL" >
+                <Properties minDistanceMeters="30">
+                </Properties>
+            </Activity>
+
+            <Activity type="ACT_SET_STATE" interruptible="1" exclusive="1" runOnce="0">
+                <Properties state="active_bank_robber"/>
+            </Activity>
+
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_FRIENDLY_SNIPER_SHOT" priority="6">
+            <Activity type="ACT_HIDE_FROM_SIGHT" interruptible="1">
+                <Properties runSpeedModifierPercent="100">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_WAIT" interruptible="1">
+                <Properties waitTime="15.0">
+                </Properties>
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_PLAYER_DETECTED" priority="7">
+
+            <Activity type="ACT_STEAL_STUFF" >
+                <Properties runSpeedModifierPercent="70" minReactDistanceMeters="3">
+                </Properties>
+            </Activity>
+
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_ALL_ROBBERY_ITEMS_STOLEN" priority="8">
+
+            <Activity type="ACT_STEAL_STUFF" >
+                <Properties runSpeedModifierPercent="70" minReactDistanceMeters="3" forceEscape="1">
+                </Properties>
+            </Activity>
+
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_TAKING_DAMAGE" priority="9">
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="ALERTED"/>
+            </Activity>
+            <Activity type="ACT_INVESTIGATE_VISUAL" >
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_VISUAL_ENEMY_IN_VIEW" priority="10">
+
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="ALERTED"/>
+            </Activity>
+
+            <Activity type="ACT_PLAYER_DETECTED" />
+
+            <Activity type="ACT_ENGAGE_ENEMY" interruptible="1">
+                <Properties runSpeedModifierPercent="100" waitTimeInCoverSec="3.0"
+                            chanceToGoToCoverPercent="90" goToCoverWhenReloading="true" goToCoverWhileAttacking="true"
+                            tryFindingCoverTimeSec="0.5" moveFromCurrentCover="true" goToTarget="false">
+                </Properties>
+            </Activity>
+
+            <!-- lower prio so that we can get TAKEN DAMAGE event, and start engage enemy afterwards again -->
+            <Activity type="ACT_SET_PRIORITY" interruptible="1">
+                <Properties priority="7">
+                </Properties>
+            </Activity>
+
+            <Activity type="ACT_STEAL_STUFF" >
+                <Properties runSpeedModifierPercent="70" minReactDistanceMeters="3">
+                </Properties>
+            </Activity>
+
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_BLOCKING_LOS" priority="11">
+            <Activity type="ACT_MOVE_OUT_OF_LOS" >
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_I_AM_ARRESTED" priority="12">
+            <Activity type="ACT_SET_STATE" interruptible="1" exclusive="1" runOnce="0">
+                <Properties state="after_being_arrested"/>
+            </Activity>
+        </ActivityBinding>
+
+    </ActivityBindingTable>
+</State>
+
+<State name="active_bank_robber">
+    <ActivityBindingTable>
+
+        <ActivityBinding eventName="TYPE_AI_IDLE_TICK" priority="1">
+            <Activity type="ACT_SET_PRIORITY" interruptible="1">
+                <Properties priority="3">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_STEAL_STUFF" >
+                <Properties runSpeedModifierPercent="70" minReactDistanceMeters="3">
+                </Properties>
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_PATROL_ENDED" priority="2" />
+
+        <ActivityBinding eventName="TYPE_AI_HEAR_COMBAT" priority="3">
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="ALERTED"/>
+            </Activity>
+
+            <Activity type="ACT_INVESTIGATE_VISUAL" >
+                <Properties minDistanceMeters="30">
+                </Properties>
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_SEE_COMBAT" priority="4">
+            <Activity type="ACT_INVESTIGATE_VISUAL" >
+                <Properties minDistanceMeters="30">
+                </Properties>
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_SAW_DOOR_OPEN" priority="5" />
+
+        <ActivityBinding eventName="TYPE_FRIENDLY_SNIPER_SHOT" priority="6" />
+
+        <ActivityBinding eventName="TYPE_PLAYER_DETECTED" priority="7">
+
+            <Activity type="ACT_STEAL_STUFF" >
+                <Properties runSpeedModifierPercent="70" minReactDistanceMeters="3">
+                </Properties>
+            </Activity>
+
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_ALL_ROBBERY_ITEMS_STOLEN" priority="8">
+
+            <Activity type="ACT_STEAL_STUFF" >
+                <Properties runSpeedModifierPercent="70" minReactDistanceMeters="3" forceEscape="1">
+                </Properties>
+            </Activity>
+
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_TAKING_DAMAGE" priority="9">
+            <Activity type="ACT_INVESTIGATE_VISUAL" >
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_VISUAL_ENEMY_IN_VIEW" priority="10">
+
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="ALERTED"/>
+            </Activity>
+
+            <Activity type="ACT_PLAYER_DETECTED" />
+
+            <Activity type="ACT_ENGAGE_ENEMY" interruptible="1">
+                <Properties runSpeedModifierPercent="100" waitTimeInCoverSec="2" chanceToGoToCoverPercent="0"
+                            goToCoverWhenReloading="false" goToCoverWhileAttacking="false" goToTarget="false"
+                            chanceToGoToTargetPercent="0" maxDistanceToTargetMeters="2" tryGoingToTargetTimeSec="100">
+                </Properties>
+            </Activity>
+
+            <!-- lower prio so that we can get TAKEN DAMAGE event, and start engage enemy afterwards again -->
+            <Activity type="ACT_SET_PRIORITY" interruptible="1">
+                <Properties priority="7">
+                </Properties>
+            </Activity>
+
+            <Activity type="ACT_STEAL_STUFF" >
+                <Properties runSpeedModifierPercent="70" minReactDistanceMeters="3" >
+                </Properties>
+            </Activity>
+
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_I_AM_ARRESTED" priority="11">
+            <Activity type="ACT_SET_STATE" interruptible="1" exclusive="1" runOnce="0">
+                <Properties state="after_being_arrested"/>
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_BLOCKING_LOS" priority="12">
+            <Activity type="ACT_MOVE_OUT_OF_LOS" >
+            </Activity>
+        </ActivityBinding>
+
+    </ActivityBindingTable>
+</State>
+
+<State name="after_being_arrested">
+    <ActivityBindingTable>
+
+        <ActivityBinding eventName="TYPE_AI_IDLE_TICK" priority="1" />
+        <ActivityBinding eventName="TYPE_AI_PATROL_ENDED" priority="2" />
+        <ActivityBinding eventName="TYPE_AI_HEAR_COMBAT" priority="3" />
+        <ActivityBinding eventName="TYPE_AI_SEE_COMBAT" priority="4" />
+        <!--ActivityBinding eventName="TYPE_AI_SAW_DOOR_OPEN" priority="5" /-->
+        <ActivityBinding eventName="TYPE_FRIENDLY_SNIPER_SHOT" priority="6" />
+
+        <ActivityBinding eventName="TYPE_PLAYER_DETECTED" priority="7" />
+        <ActivityBinding eventName="TYPE_ALL_ROBBERY_ITEMS_STOLEN" priority="8" />
+
+        <!--ActivityBinding eventName="TYPE_AI_TAKING_DAMAGE" priority="9" /-->
+
+        <ActivityBinding eventName="TYPE_AI_VISUAL_ENEMY_IN_VIEW" priority="10">
+            <Activity type="ACT_ENGAGE_ENEMY" interruptible="1">
+                <Properties runSpeedModifierPercent="100" waitTimeInCoverSec="2" chanceToGoToCoverPercent="0"
+                            goToCoverWhenReloading="false" goToCoverWhileAttacking="false" goToTarget="false"
+                            chanceToGoToTargetPercent="0" maxDistanceToTargetMeters="2" tryGoingToTargetTimeSec="100">
+                </Properties>
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_I_AM_ARRESTED" priority="11" />
+
+        <ActivityBinding eventName="TYPE_AI_BLOCKING_LOS" priority="12">
+            <Activity type="ACT_MOVE_OUT_OF_LOS" >
+            </Activity>
+        </ActivityBinding>
+
+    </ActivityBindingTable>
+</State>

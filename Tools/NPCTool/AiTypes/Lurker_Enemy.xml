@@ -1,0 +1,344 @@
+<PointsOfInterest lookAtTimeSec="1" lookAtMinDistMeters="2">
+    <POI type="Door" />
+    <POI type="Human" />
+</PointsOfInterest>
+<State name="default">
+    <ActivityBindingTable>
+        <ActivityBinding eventName="TYPE_AI_SETUP_DEFAULT_ACTIVITY" priority="0">
+            <Activity type="ACT_IDLE"/>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_IDLE_TICK" priority="1">
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_VISUAL_SPOT_BODY" priority="2">
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="SUSPICIOUS">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_INVESTIGATE_VISUAL" >
+                <Properties minDistanceMeters="30">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_WAIT" interruptible="1">
+                <Properties waitTime="3" minDistanceMeters="30">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_STOP" />
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_HEAR_COMBAT" priority="3">
+            <SetPicker type="SPICK_RANDOM" min="0" max="30">
+                <Set min="0" max="0">
+                    <Activity type="ACT_SET_HUMAN_STATE" >
+                        <Properties state="ALERTED">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_INVESTIGATE_VISUAL" >
+                        <Properties minDistanceMeters="30">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_WAIT" interruptible="1">
+                        <Properties waitTime="4">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_GOTO_LOCATION" interruptible="1">
+                        <Properties minDistanceMeters="60.0" runSpeedModifierPercent="-66">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_SCAN_VISUAL" interruptible="1">
+                        <Properties waitTime="0.5" angleLeft="45.0" angleRight="45.0" transitionWaitTime="0.5">
+                        </Properties>
+                    </Activity>
+                </Set>
+                <Set min="10" max="20">
+                    <Activity type="ACT_SET_HUMAN_STATE" >
+                        <Properties state="ALERTED">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_INVESTIGATE_VISUAL" >
+                        <Properties minDistanceMeters="30">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_WAIT" interruptible="1">
+                        <Properties waitTime="5.5">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_GOTO_LOCATION" interruptible="1">
+                        <Properties minDistanceMeters="60.0" runSpeedModifierPercent="-66">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_SCAN_VISUAL" interruptible="1">
+                        <Properties waitTime="0.5" angleLeft="45.0" angleRight="45.0" transitionWaitTime="0.5">
+                        </Properties>
+                    </Activity>
+                </Set>
+                <Set min="20" max="30">
+                    <Activity type="ACT_SET_HUMAN_STATE" >
+                        <Properties state="ALERTED">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_INVESTIGATE_VISUAL" >
+                        <Properties minDistanceMeters="30">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_WAIT" interruptible="1">
+                        <Properties waitTime="7">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_GOTO_LOCATION" interruptible="1">
+                        <Properties minDistanceMeters="60.0" runSpeedModifierPercent="-66">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_SCAN_VISUAL" interruptible="1">
+                        <Properties waitTime="0.5" angleLeft="45.0" angleRight="45.0" transitionWaitTime="0.5">
+                        </Properties>
+                    </Activity>
+                </Set>
+            </SetPicker>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_SEE_COMBAT" priority="4">
+            <SetPicker type="SPICK_RANDOM" min="0" max="30">
+                <Set min="0" max="0">
+                    <Activity type="ACT_SET_HUMAN_STATE" >
+                        <Properties state="ALERTED">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_INVESTIGATE_VISUAL" >
+                        <Properties minDistanceMeters="30">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_WAIT" interruptible="1">
+                        <Properties waitTime="4">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_GOTO_LOCATION" interruptible="1">
+                        <Properties minDistanceMeters="60.0" runSpeedModifierPercent="-66">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_SCAN_VISUAL" interruptible="1">
+                        <Properties waitTime="0.5" angleLeft="45.0" angleRight="45.0" transitionWaitTime="0.5">
+                        </Properties>
+                    </Activity>
+                </Set>
+                <Set min="10" max="20">
+                    <Activity type="ACT_SET_HUMAN_STATE" >
+                        <Properties state="ALERTED">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_INVESTIGATE_VISUAL" >
+                        <Properties minDistanceMeters="30">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_WAIT" interruptible="1">
+                        <Properties waitTime="5.5">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_GOTO_LOCATION" interruptible="1">
+                        <Properties minDistanceMeters="60.0" runSpeedModifierPercent="-66">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_SCAN_VISUAL" interruptible="1">
+                        <Properties waitTime="0.5" angleLeft="45.0" angleRight="45.0" transitionWaitTime="0.5">
+                        </Properties>
+                    </Activity>
+                </Set>
+                <Set min="20" max="30">
+                    <Activity type="ACT_SET_HUMAN_STATE" >
+                        <Properties state="ALERTED">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_INVESTIGATE_VISUAL" >
+                        <Properties minDistanceMeters="30">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_WAIT" interruptible="1">
+                        <Properties waitTime="7">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_GOTO_LOCATION" interruptible="1">
+                        <Properties minDistanceMeters="60.0" runSpeedModifierPercent="-66">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_SCAN_VISUAL" interruptible="1">
+                        <Properties waitTime="0.5" angleLeft="45.0" angleRight="45.0" transitionWaitTime="0.5">
+                        </Properties>
+                    </Activity>
+                </Set>
+            </SetPicker>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_SUSPICIOUS_DOOR_SOUND" priority="5">
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="SUSPICIOUS">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_WAIT" interruptible="1">
+                <Properties waitTime="0.6">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_INVESTIGATE_VISUAL" >
+                <Properties minDistanceMeters="30">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_GOTO_LOCATION" interruptible="1">
+                <Properties minDistanceMeters="10.0" runSpeedModifierPercent="-66">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_SCAN_VISUAL" interruptible="1">
+                <Properties waitTime="0.5" angleLeft="45.0" angleRight="45.0" transitionWaitTime="0.5">
+                </Properties>
+            </Activity>
+        </ActivityBinding>
+        
+        <ActivityBinding eventName="TYPE_AI_SAW_DOOR_OPEN" priority="6">
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="SUSPICIOUS">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_WAIT" interruptible="1">
+                <Properties waitTime="0.6">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_INVESTIGATE_VISUAL" >
+                <Properties minDistanceMeters="30">
+                </Properties>
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_FRIENDLY_SNIPER_SHOT" priority="7">
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="ALERTED">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_HIDE_FROM_SIGHT" interruptible="1">
+                <Properties runSpeedModifierPercent="100">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_WAIT" interruptible="1">
+                <Properties waitTime="15.0">
+                </Properties>
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_SAW_ENEMY_VIP_ARRESTED" priority="7">
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="ALERTED">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_INTERCEPT_VIP" interruptible="1">
+                <Properties runSpeedModifierPercent="25">
+                </Properties>
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_TAKING_DAMAGE" priority="8">
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="ALERTED">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_INVESTIGATE_VISUAL">
+            </Activity>
+        </ActivityBinding>
+
+        <ActivityBinding eventName="TYPE_AI_VISUAL_ENEMY_IN_VIEW" priority="9">
+            <Activity type="ACT_SET_HUMAN_STATE" >
+                <Properties state="ALERTED">
+                </Properties>
+            </Activity>
+            <Activity type="ACT_ENGAGE_ENEMY" interruptible="1">
+                <Properties runSpeedModifierPercent="100" waitTimeInCoverSec="2">
+                </Properties>
+            </Activity>
+        </ActivityBinding>
+        
+        <ActivityBinding eventName="TYPE_AI_ENEMY_KILLED" priority="10">
+            <SetPicker type="SPICK_RANDOM" min="0" max="30">
+                <Set min="0" max="10">
+                    <Activity type="ACT_SET_PRIORITY" interruptible="1">
+                        <Properties priority="4">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_SET_HUMAN_STATE" >
+                        <Properties state="ALERTED">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_INVESTIGATE_VISUAL" >
+                        <Properties minDistanceMeters="30">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_WAIT" interruptible="1">
+                        <Properties waitTime="4">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_GOTO_LOCATION" interruptible="1">
+                        <Properties minDistanceMeters="60.0" runSpeedModifierPercent="-66">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_SCAN_VISUAL" interruptible="1">
+                        <Properties waitTime="0.5" angleLeft="45.0" angleRight="45.0" transitionWaitTime="0.5">
+                        </Properties>
+                    </Activity>
+                </Set>
+                <Set min="10" max="20">
+                    <Activity type="ACT_SET_PRIORITY" interruptible="1">
+                        <Properties priority="4">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_SET_HUMAN_STATE" >
+                        <Properties state="ALERTED">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_INVESTIGATE_VISUAL" >
+                        <Properties minDistanceMeters="30">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_WAIT" interruptible="1">
+                        <Properties waitTime="5.5">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_GOTO_LOCATION" interruptible="1">
+                        <Properties minDistanceMeters="60.0" runSpeedModifierPercent="-66">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_SCAN_VISUAL" interruptible="1">
+                        <Properties waitTime="0.5" angleLeft="45.0" angleRight="45.0" transitionWaitTime="0.5">
+                        </Properties>
+                    </Activity>
+                </Set>
+                <Set min="20" max="30">
+                    <Activity type="ACT_SET_PRIORITY" interruptible="1">
+                        <Properties priority="4">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_SET_HUMAN_STATE" >
+                        <Properties state="ALERTED">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_INVESTIGATE_VISUAL" >
+                        <Properties minDistanceMeters="30">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_WAIT" interruptible="1">
+                        <Properties waitTime="7">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_GOTO_LOCATION" interruptible="1">
+                        <Properties minDistanceMeters="60.0" runSpeedModifierPercent="-66">
+                        </Properties>
+                    </Activity>
+                    <Activity type="ACT_SCAN_VISUAL" interruptible="1">
+                        <Properties waitTime="0.5" angleLeft="45.0" angleRight="45.0" transitionWaitTime="0.5">
+                        </Properties>
+                    </Activity>
+                </Set>
+            </SetPicker>
+        </ActivityBinding>
+        
+        <ActivityBinding eventName="TYPE_AI_BLOCKING_LOS" priority="11">
+            <Activity type="ACT_MOVE_OUT_OF_LOS" >
+            </Activity>
+        </ActivityBinding>
+    </ActivityBindingTable>
+</State>

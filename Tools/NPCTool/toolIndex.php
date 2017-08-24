@@ -42,7 +42,8 @@
 				<p class="flexBox_Header">Choose the unit's faction.</p>
 				<select name="templatePick" id="factionPicker" class="forum_DropDown forumItem_wider">
 					<option value="Enemy">Enemy</option>
-					<!--<option value="Friendly">Friendly</option>-->
+					<option value="Friendly">Friendly</option>
+					<option value="Hostage">Hostage</option>
 				</select>
 				<br>
 
@@ -82,8 +83,8 @@
 				<br>
 
 				<h3 class="flexBox_Header flexBox_Header_Bold">FOV, Degrees:</h3>
-				<p class="flexBox_Header">The view width of the NPC in degrees. Default is 90.</p>
-				<input type="number" name="fileName" id="fovDegreesTextBox" class="forum_textInput forumItem_wider" value="90" min="1" max="360">
+				<p class="flexBox_Header">The view width of the NPC in degrees. Default is 110.</p>
+				<input type="number" name="fileName" id="fovDegreesTextBox" class="forum_textInput forumItem_wider" value="110" min="1" max="360">
 				<br>
 
 				<h3 class="flexBox_Header flexBox_Header_Bold">FOV, Max Range:</h3>
@@ -208,35 +209,8 @@
 	
 </body>
 <script>
-	// Start Up
-	/*$("#templatePickerFlexBox").show();
-	$("#mainPickerBox").hide();
-
-	// Main Functions
-	function chooseTemplate() {
-		var picker = $("#templatePicker").val();
-
-		if(picker == "empty") {
-			$("#templatePickerFlexBox").hide();
-			$("#mainPickerBox").show();
-		}
-	}*/
-
 	function compileNPC() {
-
-	}
-
-	// Drop Down Populators
-	function populateWeaponList() {
-
-	}
-
-	function populateArmorList() {
-
-	}
-
-	function populateAiList() {
-
+		// Oh boy
 	}
 </script>
 </html>
