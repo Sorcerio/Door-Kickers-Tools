@@ -19,14 +19,6 @@
 		include("../../toolBar.php"); 
 	?>
 
-	<?php
-		$line = "LINE";
-		echo '<select name="templatePick" id="classPicker" class="forum_DropDown forumItem_wider">';
-		// echo '<option value="'.$line.'">'.$line.'</option>';
-		echo $line;
-		echo '</select>';
-	?>
-
 	<!-- Main Page -->
 	<div class="flexBoxContainer">
 		<!--<div class="flexBox" id="templatePickerFlexBox">
@@ -68,8 +60,11 @@
 				<h3 class="flexBox_Header flexBox_Header_Bold">Weapons:</h3>
 				<p class="flexBox_Header">Choose a vanilla weapon from the dropdown, or link to a custom one.</p>
 				<select name="templatePick" id="weaponPicker" class="forum_DropDown forumItem_wider">
-					<option value="GUN_EXAMPLE">GUN_EXAMPLE</option>
 					<option value="custom">Custom Weapon</option>
+					<?php
+						$listName = "LinkLists/weaponList.list";	// Name and Path to File
+						include "../../actions/buildSelectorItemsFromList.php";
+					?>
 				</select>
 				<input type="text" name="fileName" id="weaponTextBox" class="forum_textInput forumItem_wider">
 				<br>
@@ -77,8 +72,11 @@
 				<h3 class="flexBox_Header flexBox_Header_Bold">Armor:</h3>
 				<p class="flexBox_Header">Choose a vanilla armor from the dropdown, or link to a custom one.</p>
 				<select name="templatePick" id="armorPicker" class="forum_DropDown forumItem_wider">
-					<option value="ARMOR_EXAMPLE">ARMOR_EXAMPLE</option>
 					<option value="custom">Custom Armor</option>
+					<?php
+						$listName = "LinkLists/armorList.list";	// Name and Path to File
+						include "../../actions/buildSelectorItemsFromList.php";
+					?>
 				</select>
 				<input type="text" name="fileName" id="armorTextBox" class="forum_textInput forumItem_wider">
 				<br>
@@ -106,8 +104,11 @@
 				<h3 class="flexBox_Header flexBox_Header_Bold">Portrait:</h3>
 				<p class="flexBox_Header">Choose a portrait, or link to a custom one.</p>
 				<select name="templatePick" id="portraitPicker" class="forum_DropDown forumItem_wider">
-					<option value="PORTRAIT_EXAMPLE">PORTRAIT_EXAMPLE</option>
 					<option value="custom">Custom Portrait</option>
+					<?php
+						$listName = "LinkLists/portraitTextures.list";	// Name and Path to File
+						include "../../actions/buildSelectorItemsFromList.php";
+					?>
 				</select>
 				<input type="text" name="fileName" id="portraitTextBox" class="forum_textInput forumItem_wider">
 				<!-- TODO: Add image of portrait or have selection from image picker -->
