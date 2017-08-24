@@ -1,0 +1,18 @@
+/* Tool CSS */
+
+/*Palette
+	#545454	>Gray
+	#29c583	>Green
+	#ff4256	>Red
+	#ea8c1c >Orange
+*/
+
+/* General Start */
+* {
+	font-family: Calibri;
+}
+
+body {
+	background-color: rgb(242, 242, 242);
+}
+/* General End */
