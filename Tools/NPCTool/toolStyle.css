@@ -16,4 +16,14 @@
 	width: 50%;
 	min-width: 350px;
 }
+
+.npcQueue_Text {
+	margin-left: 5px;
+	margin-right: 5px;
+	font-weight: bold;
+}
+
+.npcQueue_Back {
+	background-color: #7ea0bd;
+}
 /* Forum End */

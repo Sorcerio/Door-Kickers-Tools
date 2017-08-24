@@ -35,7 +35,7 @@
 			<forum>
 				<h3 class="flexBox_Header flexBox_Header_Bold">NPC Name:</h3>
 				<p class="flexBox_Header">Can be anything. But remember, the player will see this.</p>
-				<input type="text" name="fileName" id="fileName" class="forum_textInput forumItem_wider">
+				<input type="text" name="unitName" id="unitNameTextBox" class="forum_textInput forumItem_wider">
 				<br>
 
 				<h3 class="flexBox_Header flexBox_Header_Bold">Faction:</h3>
@@ -197,20 +197,180 @@
 				<h3 class="flexBox_Header flexBox_Header_Bold">AI Type:</h3>
 				<p class="flexBox_Header">Choose an AI type for the NPC.</p>
 				<select name="templatePick" id="aiPicker" class="forum_DropDown forumItem_wider">
-					<option value="AI_EXAMPLE">AI_EXAMPLE</option>
+					<?php
+						$folder = "AiTypes";
+						include "../../actions/generateSelectorItemsFromAiFolder.php";
+					?>
 				</select>
 				<br>
 
-				<button type="button" onclick="#" class="forum_Button">Compile</button>
+				<button type="button" onclick="compileNPC()" class="forum_Button">Compile NPC</button>
 			</forum>
 		</div>
+
+		<div class="flexBox" id="templatePickerFlexBox">
+			<h3 class="flexBox_Header flexBox_Header_Bold">Queued NPCs:</h3>
+			<ul id="queuedNPCList" class="homepageList">
+				<h2 id="emptyQueue">No NPCs in Queue</h2>
+			</ul>
+			<button type="button" onclick="buildNpcFile()" class="forum_Button">Build NPC File</button>
+		</div>
 	</div>
-	<h1></h1>
-	
 </body>
 <script>
+	// Variables
+	var currentQueue = 0;
+	var npcQueue = [];
+
+	// Compile a single NPC to an Array
 	function compileNPC() {
-		// Oh boy
+		// Iterate
+		currentQueue += 1;
+
+		// Check if list is empty
+		if(currentQueue == 0) {
+			$("#emptyQueue").show();
+		} else {
+			$("#emptyQueue").hide();
+		}
+
+		// Build NPC array
+		var npcItems = [];
+
+		if($("#unitNameTextBox").val().trim() == "") {
+			npcItems.push("NO_NAME");
+		} else {
+			npcItems.push($("#unitNameTextBox").val().trim());
+		}
+		
+		npcItems.push($("#factionPicker").val().trim());
+
+		npcItems.push($("#classPicker").val().trim());
+
+		if($("#weaponPicker").val().trim() == "custom") {
+			// Take custom Text
+			npcItems.push($("#weaponTextBox").val().trim());
+		} else {
+			// Take drop down
+			npcItems.push($("#weaponPicker").val().trim());
+		}
+
+		if($("#armorPicker").val().trim() == "custom") {
+			// Take custom Text
+			npcItems.push($("#armorTextBox").val().trim());
+		} else {
+			// Take drop down
+			npcItems.push($("#armorPicker").val().trim());
+		}
+
+		if($("#fovDegreesTextBox").val().trim() == "") {
+			npcItems.push("110");
+		} else {
+			npcItems.push($("#fovDegreesTextBox").val().trim());
+		}
+		
+		if($("#fovRangeTextBox").val().trim() == "") {
+			npcItems.push("99999");
+		} else {
+			npcItems.push($("#fovRangeTextBox").val().trim());
+		}
+
+		if($("#moveSpeedModTextBox").val().trim() == "") {
+			npcItems.push("0");
+		} else {
+			npcItems.push($("#moveSpeedModTextBox").val().trim());
+		}
+
+		if($("#turnSpeedModTextBox").val().trim() == "") {
+			npcItems.push("0");
+		} else {
+			npcItems.push($("#turnSpeedModTextBox").val().trim());
+		}
+
+		if($("#portraitPicker").val().trim() == "custom") {
+			// Take custom Text
+			npcItems.push($("#portraitTextBox").val().trim());
+		} else {
+			// Take drop down
+			npcItems.push($("#portraitPicker").val().trim());
+		}
+
+		if($("#pistolSpritePicker").val().trim() == "custom") {
+			// Take custom Text
+			npcItems.push($("#pistolSpriteTextBox").val().trim());
+		} else {
+			// Take drop down
+			npcItems.push($("#pistolSpritePicker").val().trim());
+		}
+
+		if($("#rifleSpritePicker").val().trim() == "custom") {
+			// Take custom Text
+			npcItems.push($("#rifleSpriteTextBox").val().trim());
+		} else {
+			// Take drop down
+			npcItems.push($("#rifleSpritePicker").val().trim());
+		}
+
+		if($("#shotgunSpritePicker").val().trim() == "custom") {
+			// Take custom Text
+			npcItems.push($("#shotgunSpriteTextBox").val().trim());
+		} else {
+			// Take drop down
+			npcItems.push($("#shotgunSpritePicker").val().trim());
+		}
+
+		if($("#weaponlessSpritePicker").val().trim() == "custom") {
+			// Take custom Text
+			npcItems.push($("#weaponlessSpriteTextBox").val().trim());
+		} else {
+			// Take drop down
+			npcItems.push($("#weaponlessSpritePicker").val().trim());
+		}
+
+		if($("#legsSpritePicker").val().trim() == "custom") {
+			// Take custom Text
+			npcItems.push($("#legsSpriteTextBox").val().trim());
+		} else {
+			// Take drop down
+			npcItems.push($("#legsSpritePicker").val().trim());
+		}
+
+		if($("#deathSpritePicker").val().trim() == "custom") {
+			// Take custom Text
+			npcItems.push($("#deathSpriteTextBox").val().trim());
+		} else {
+			// Take drop down
+			npcItems.push($("#deathSpritePicker").val().trim());
+		}
+
+		npcItems.push($("#aiPicker").val().trim());
+
+		// Report
+		console.log(npcItems);
+
+		// Add to Queue Array
+		npcQueue.push(npcItems);
+
+		// Update the Queue Gui
+		var html = "<li class='homepageListItem'><h4 class='npcQueue_Text'>"+npcItems[0]+", "+npcItems[1]+" "+npcItems[2]+"</h4></li>";
+		$("#queuedNPCList").append(html);
+	}
+
+	// Compile all of the NPCs and download the file
+	function buildNpcFile() {
+		if(currentQueue == 0) {
+			// It's an error
+			console.log("Nothing is in the queue.");
+		} else {
+			// Make Action Call
+			$.get("../../actions/compileNpcCode.php?npcqueue="+JSON.stringify(npcQueue), function(data, status){
+				if(status === "success") {
+
+				} else {
+					console.log("Couldn't compile the NPC code.");
+				}
+			});
+		}
 	}
 </script>
 </html>
