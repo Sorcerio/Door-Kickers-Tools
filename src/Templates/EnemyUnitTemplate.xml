@@ -1,0 +1,26 @@
+<Entity name="Enemy_**UNIT_NAME" type="Human" subType="**FACTION" class="**FACTION+**CLASS" fogOfWarVisibility="hidden" sizeX="45" sizeY="40" bboxOffsetX="0" bboxOffsetY="0" tooltip="Suspect (**WEAPON)">
+	<FieldOfView degrees="**FOV_DEGREES" eyeRadiusMeters="0.7" rangeMeters="**FOV_MAX_RANGE"/>
+	<MobilityModifiers moveSpeedLocalModifierPercent="**MOVE_SPEED_MOD" turnSpeedLocalModifierPercent="**TURN_SPEED_MOD"/>
+	<Equipment>
+		<Item name="**ARMOR"/>
+		<Item name="**WEAPON"/>
+	</Equipment>
+	<Id name="**UNIT_NAME" portrait="**PORTRAIT_LINK"/>
+
+	<Skin
+		pistol="**PISTOL_LINK"
+		rifle="**RIFLE_LINK"
+		shotgun="**SHOTGUN_LINK"
+		weaponless="**WEAPONLESS_LINK"
+		legs="**LEGS_LINK"
+		death="**DEATH_LINK"
+	/>
+	<OffscreenIndicator>
+		<RenderObject2D texture="data/textures/gui/menus/menu_brief_badguy.tga"/>
+	</OffscreenIndicator>
+	<RenderObject2D layer="3"/>
+
+	<Behavior defaultState="default" defaultActivity="ACT_IDLE">
+		**AI_TYPE
+	</Behavior>
+</Entity>

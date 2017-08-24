@@ -1,5 +1,5 @@
 # Door Kickers Tools
-Tools for creating new content for the game Door Kickers.
+Tools for creating new content for the game Door Kickers. Hopefully this will extend to Door Kickers 2 when it comes out. If not, new tools will be made for that game when I find the time.
 
 ## Currently Included Tools
 * NPC Creator
