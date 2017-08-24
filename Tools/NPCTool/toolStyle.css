@@ -8,5 +8,12 @@
 */
 
 /* Forum Start */
+.forumItem_wider {
+	width: 97%;
+}
 
+#mainPickerBox {
+	width: 50%;
+	min-width: 350px;
+}
 /* Forum End */

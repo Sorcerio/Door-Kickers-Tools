@@ -96,10 +96,76 @@ body {
 
 .flexBox {
 	border: 1px solid black;
-    background-color: #7ea0bd;
-    width: 200px;
-    height: 100px;
+    background-color: #CCCCCC;
 	margin: 10px;
 	border-radius: 4px;
 }
+
+.flexBox_Top_Label {
+	margin-top: 0px;
+	padding-top: 6px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid black;
+	background-color: #7ea0bd;
+}
+
+.flexBox_Header {
+	margin-left: 3px;
+	margin-right: 3px;
+	padding: 0px;
+	padding-left: 5px;
+	padding-bottom: 3px;
+	margin: 0px;
+	margin-bottom: 5px;
+	/*border: 1px solid #545454;*/
+	border: 0;
+	border-radius: 4px;
+	color: black;
+}
+
+.flexBox_Header_Bold {
+	font-weight: bold;
+	background-color: #7ea0bd;
+	padding-right: 5px;
+}
 /* Flex Boxes End */
+
+/* Forum Elements Start */
+.forum_DropDown {
+	margin-left: 3px;
+	margin-right: 3px;
+	border-radius: 4px;
+	background-color: rgb(242, 242, 242);
+	height: 40px;
+	margin-bottom: 7px;
+}
+
+
+.forum_Button {
+	font-size: 20px;
+	background-color: #7ea0bd;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 22px;
+	padding-right: 22px;
+	border: 0;
+	outline: none;
+	border-radius: 4px;
+	margin: 3px;
+}
+
+.forum_Button:hover {
+	background-color: #f00206;
+	cursor: pointer;
+}
+
+.forum_textInput {
+	margin: 3px;
+	height: 40px;
+}
+/* Forum Elements End */
